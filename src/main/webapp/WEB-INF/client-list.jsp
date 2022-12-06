@@ -14,6 +14,11 @@
 <%@ include file="navbar.jsp"%>
 
 <div class="container">
+
+    <button>
+        <a href="client/add">Ajouter un client</a>
+    </button>
+
     <div class="row flex-lg-nowrap">
         <div class="col">
             <div class="row flex-lg-nowrap">
