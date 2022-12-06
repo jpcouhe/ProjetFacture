@@ -41,12 +41,13 @@
                     </tr>
                     </thead>
                     <tbody>
+                    <c:forEach items="${invoices}" var="invoice">
                       <tr>
-                        <td class="text-nowrap align-middle">1</td>
-                        <td class="text-nowrap align-middle">22/10/2022</td>
-                        <td class="text-nowrap align-middle">Menage</td>
-                        <td class="text-nowrap align-middle">95€</td>
-                        <td class="text-nowrap align-middle">110€</td>
+                        <td class="text-nowrap align-middle">${invoice.idInvoice}</td>
+                        <td class="text-nowrap align-middle">${invoice.dateInvoice}</td>
+                        <td class="text-nowrap align-middle">${invoice.dateInvoice}</td>
+                        <td class="text-nowrap align-middle">${invoice.montantHtInvoice}</td>
+                        <td class="text-nowrap align-middle">${invoice.montantTtcInvoice}</td>
                         <td class="text-center align-middle">
                           <div class="btn-group align-top">
                             <button class="btn btn-sm btn-outline-secondary badge text-primary" type="button"><a href="${pageContext.request.contextPath}/client/edit?id=${client.idClient}"/>Edit</button>
@@ -54,6 +55,7 @@
                           </div>
                         </td>
                       </tr>
+                    </c:forEach>
                     </tbody>
                   </table>
                 </div>
