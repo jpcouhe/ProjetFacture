@@ -57,21 +57,57 @@ public class ClientDao implements Dao<ClientEntity> {
 
     @Override
     public void save(ClientEntity clientEntity) {
-
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction et = em.getTransaction();
+        try {
+            et.begin();
+            em.merge(clientEntity);
+            et.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (et.isActive()) {
+                et.rollback();
+            }
+        } finally {
+            em.close();
+        }
     }
 
     @Override
     public void update(ClientEntity clientEntity) {
-
-    }
-
-    @Override
-    public void update(int idParam, String name, String description) {
-
+        ClientEntity clientUpdated = null;
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction et = em.getTransaction();
+        try {
+            et.begin();
+            clientUpdated = em.merge(clientEntity);
+            et.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (et.isActive()) {
+                et.rollback();
+            }
+        } finally {
+            em.close();
+        }
     }
 
     @Override
     public void delete(ClientEntity clientEntity) {
-
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction et = em.getTransaction();
+        try {
+            et.begin();
+            ClientEntity clientToDelete = em.find(ClientEntity.class, clientEntity.getIdClient());
+            em.remove(clientToDelete);
+            et.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (et.isActive()) {
+                et.rollback();
+            }
+        } finally {
+            em.close();
+        }
     }
 }

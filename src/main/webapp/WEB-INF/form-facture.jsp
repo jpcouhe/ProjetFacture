@@ -23,14 +23,17 @@
             <form class="needs-validation" novalidate>
                 <div class="row g-3">
 
-                    <div class="col-md-5">
+                    <div class="col-6">
                         <label for="service" class="form-label">Service</label>
-                        <select class="form-select" id="service" required>
+                        <select class="form-select" id="service" >
                             <option value="">Choisir...</option>
-                            <option value="1">Menage</option>
+                            <option value="Menage">Menage</option>
                         </select>
                     </div>
-
+                    <div class="col-6">
+                        <label for="serviceQuantity" class="form-label">Quantité</label>
+                        <input type="number" class="form-control" id="serviceQuantity" name="serviceQuantity" min="1" max="100" value="">
+                    </div>
 
                     <div class="col-12">
                         <label for="priceHT" class="form-label">Montant HT</label>
