@@ -1,4 +1,4 @@
-package com.example.projetfacture.servlet;
+package com.example.projetfacture.servlet.client;
 
 import com.example.projetfacture.dao.ClientDao;
 import com.example.projetfacture.models.ClientEntity;

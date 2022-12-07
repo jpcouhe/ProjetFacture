@@ -17,6 +17,7 @@
         <div class="collapse navbar-collapse" id="navbarsExample01">
             <ul class="navbar-nav me-auto mb-2">
                 <li class="nav-item">
+                    <a class="nav-link" href="/product/add">Ajouter un produit</a>
                     <a class="nav-link" href="#">Se deconnecter</a>
                 </li>
             </ul>

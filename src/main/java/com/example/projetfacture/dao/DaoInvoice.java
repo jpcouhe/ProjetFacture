@@ -18,20 +18,24 @@ public class DaoInvoice implements Dao<InvoiceEntity> {
 
     private EntityManagerFactory emf = getEntityInstance();
 
-    public Optional<List<InvoiceEntity>> getInvoiceByIdClient(int idClient){
+    public Optional<List<InvoiceEntity>> getInvoiceByIdClient(int idClient) {
         List<InvoiceEntity> invoiceList = new ArrayList<>();
         EntityManager em = emf.createEntityManager();
         EntityTransaction et = em.getTransaction();
-        try{
+        try {
             et.begin();
-            TypedQuery<InvoiceEntity> query = em.createQuery("SELECT f from InvoiceEntity f INNER JOIN ClientEntity c ON f.idClient = :idParam", InvoiceEntity.class)
-                    .setParameter("idParam", idClient);
+            TypedQuery<InvoiceEntity> query = em.createQuery("SELECT f from InvoiceEntity f INNER JOIN ClientEntity c ON f.idClient = :idParam", InvoiceEntity.class).setParameter("idParam", idClient);
+
             invoiceList = query.getResultList();
+            invoiceList.forEach(invoice -> invoice.getInvoiceProductsByIdInvoice().iterator());
+
             et.commit();
             return Optional.of(invoiceList);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-            if(et.isActive()) {et.rollback();}
+            if (et.isActive()) {
+                et.rollback();
+            }
         } finally {
             em.close();
         }
@@ -45,9 +49,7 @@ public class DaoInvoice implements Dao<InvoiceEntity> {
         EntityTransaction et = em.getTransaction();
         try {
             et.begin();
-            InvoiceEntity invoice = em.createQuery("SELECT b FROM InvoiceEntity b WHERE b.id = :idParam", InvoiceEntity.class)
-                    .setParameter("idParam", id)
-                    .getSingleResult();
+            InvoiceEntity invoice = em.createQuery("SELECT b FROM InvoiceEntity b WHERE b.id = :idParam", InvoiceEntity.class).setParameter("idParam", id).getSingleResult();
             et.commit();
             return Optional.of(invoice);
         } catch (Exception e) {
@@ -67,15 +69,16 @@ public class DaoInvoice implements Dao<InvoiceEntity> {
         EntityManager entityManager = emf.createEntityManager();
         EntityTransaction et = entityManager.getTransaction();
 
-        try{
+        try {
             et.begin();
-
             TypedQuery<InvoiceEntity> query = entityManager.createQuery("SELECT g from InvoiceEntity g", InvoiceEntity.class);
             invoiceList = query.getResultList();
             et.commit();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-            if(et.isActive()) {et.rollback();}
+            if (et.isActive()) {
+                et.rollback();
+            }
         } finally {
             entityManager.close();
         }

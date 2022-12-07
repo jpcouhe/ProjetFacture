@@ -1,5 +1,6 @@
 package com.example.projetfacture.servlet;
 
+import com.example.projetfacture.servlet.client.ClientServlet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;

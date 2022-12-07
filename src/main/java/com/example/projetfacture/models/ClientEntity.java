@@ -35,7 +35,7 @@ public class ClientEntity {
     @ManyToOne
     @JoinColumn(name = "id_users", referencedColumnName = "id_users", insertable = false, updatable = false)
     private UsersEntity usersByIdUsers;
-    @OneToMany(mappedBy = "clientByIdClient")
+    @OneToMany(mappedBy = "clientByIdClient", cascade = {CascadeType.REMOVE})
     private Collection<InvoiceEntity> invoicesByIdClient;
 
     public ClientEntity() {

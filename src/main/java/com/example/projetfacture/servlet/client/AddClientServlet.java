@@ -1,4 +1,4 @@
-package com.example.projetfacture.servlet;
+package com.example.projetfacture.servlet.client;
 
 import com.example.projetfacture.dao.ClientDao;
 import com.example.projetfacture.models.ClientEntity;
@@ -9,10 +9,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.util.List;
 
-@WebServlet(urlPatterns = AddClient.URL)
-public class AddClient extends HttpServlet {
+@WebServlet(urlPatterns = AddClientServlet.URL)
+public class AddClientServlet extends HttpServlet {
 
     public static final String URL = "/client/add";
 

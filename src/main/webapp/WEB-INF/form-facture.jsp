@@ -22,6 +22,12 @@
             <h4 class="mb-3"></h4>
             <form class="needs-validation" novalidate>
                 <div class="row g-3">
+                    <div class="col-12">
+                        <label for="date">date:</label>
+                        <input type="date" id="date" name="start">
+                    </div>
+
+                    <div id="product-input">
 
                     <div class="col-6">
                         <label for="service" class="form-label">Service</label>
@@ -34,6 +40,10 @@
                         <label for="serviceQuantity" class="form-label">Quantité</label>
                         <input type="number" class="form-control" id="serviceQuantity" name="serviceQuantity" min="1" max="100" value="">
                     </div>
+
+                    </div>
+
+                    <button class="btn-add-product">AJouter un produit</button>
 
                     <div class="col-12">
                         <label for="priceHT" class="form-label">Montant HT</label>
@@ -52,5 +62,8 @@
         </div>
     </div>
 </main>
+
+<script type="text/javascript" src="../js/form-facture.js"></script>
+
 </body>
 </html>

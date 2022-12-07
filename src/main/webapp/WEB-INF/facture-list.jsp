@@ -45,13 +45,18 @@
                       <tr>
                         <td class="text-nowrap align-middle">${invoice.idInvoice}</td>
                         <td class="text-nowrap align-middle">${invoice.dateInvoice}</td>
-                        <td class="text-nowrap align-middle">${invoice.dateInvoice}</td>
+                        <td class="text-nowrap align-middle">
+                            <c:forEach items="${invoice.invoiceProductsByIdInvoice}" var="product">
+                                  <p>${product.productByIdProduct.descriptionProduct} - ${product.quantity}</p>
+                            </c:forEach>
+                        </td>
                         <td class="text-nowrap align-middle">${invoice.montantHtInvoice}</td>
                         <td class="text-nowrap align-middle">${invoice.montantTtcInvoice}</td>
                         <td class="text-center align-middle">
                           <div class="btn-group align-top">
-                            <button class="btn btn-sm btn-outline-secondary badge text-primary" type="button"><a href="${pageContext.request.contextPath}/client/edit?id=${client.idClient}"/>Edit</button>
-                            <button class="btn btn-sm btn-outline-secondary badge text-danger" type="button">Supprimer</button>
+                            <form action="${pageContext.request.contextPath}/facture/delete?id=${invoice.idInvoice}" method="post">
+                               <button class="btn btn-sm btn-outline-secondary badge text-danger" type="submit">Supprimer</button>
+                            </form>
                           </div>
                         </td>
                       </tr>

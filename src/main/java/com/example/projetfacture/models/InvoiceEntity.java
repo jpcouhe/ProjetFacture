@@ -27,7 +27,7 @@ public class InvoiceEntity {
     @ManyToOne
     @JoinColumn(name = "id_client", referencedColumnName = "id_client", insertable = false, updatable = false)
     private ClientEntity clientByIdClient;
-    @OneToMany(mappedBy = "invoiceByIdInvoice")
+    @OneToMany(mappedBy = "invoiceByIdInvoice", cascade = {CascadeType.MERGE})
     private Collection<InvoiceProductEntity> invoiceProductsByIdInvoice;
 
     public int getIdInvoice() {
