@@ -11,18 +11,6 @@
         <class>com.example.projetfacture.models.ProductEntity</class>
         <class>com.example.projetfacture.models.TvaEntity</class>
         <class>com.example.projetfacture.models.UsersEntity</class>
-        <class>com.example.projetfacture.models.ClientEntity</class>
-        <class>com.example.projetfacture.models.InvoiceEntity</class>
-        <class>com.example.projetfacture.models.InvoiceProductEntity</class>
-        <class>com.example.projetfacture.models.ProductEntity</class>
-        <class>com.example.projetfacture.models.TvaEntity</class>
-        <class>com.example.projetfacture.models.UsersEntity</class>
-        <class>com.example.projetfacture.models.ClientEntity</class>
-        <class>com.example.projetfacture.models.InvoiceEntity</class>
-        <class>com.example.projetfacture.models.InvoiceProductEntity</class>
-        <class>com.example.projetfacture.models.ProductEntity</class>
-        <class>com.example.projetfacture.models.TvaEntity</class>
-        <class>com.example.projetfacture.models.UsersEntity</class>
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
             <property name="jakarta.persistence.jdbc.url"
@@ -33,10 +21,10 @@
             <!-- Affiche les requêtes SQL dans la console         -->
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.hbm2ddl.auto" value="validate"/>
-            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/projet-facture"/>
+          <!--  <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/projet-facture"/>
             <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
             <property name="hibernate.connection.username" value="root"/>
-            <property name="hibernate.connection.password" value="root"/>
+            <property name="hibernate.connection.password" value="root"/>-->
             <!--        <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/projet-facture"/>
                     <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
                     <property name="hibernate.connection.username" value="root"/>

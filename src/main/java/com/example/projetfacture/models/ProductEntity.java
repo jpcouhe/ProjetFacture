@@ -20,7 +20,7 @@ public class ProductEntity {
     @Basic
     @Column(name = "id_tva")
     private Integer idTva;
-    @OneToMany(mappedBy = "productByIdProduct")
+    @OneToMany(mappedBy = "productByIdProduct", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Collection<InvoiceProductEntity> invoiceProductsByIdProduct;
     @ManyToOne
     @JoinColumn(name = "id_tva", referencedColumnName = "id_tva",insertable = false, updatable = false)

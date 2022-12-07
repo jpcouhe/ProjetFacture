@@ -15,28 +15,6 @@ import static com.example.projetfacture.utilities.EntityManager.getEntityInstanc
 public class ProductDao implements Dao<ProductEntity> {
 
     private EntityManagerFactory emf = getEntityInstance();
-//
-//
-//    public Optional<ProductEntity> getProductByFactureId(int id) {
-//        List<ProductEntity> productList = new ArrayList<>();
-//        EntityManager em = emf.createEntityManager();
-//        EntityTransaction et = em.getTransaction();
-//        try{
-//            et.begin();
-//
-//            TypedQuery<InvoiceEntity> query = em.createQuery("SELECT f from InvoiceEntity f INNER JOIN ClientEntity c ON f.idClient = :idParam", InvoiceEntity.class)
-//                    .setParameter("idParam", idClient);
-////            invoiceList = query.getResultList();
-//            et.commit();
-//            return Optional.of(invoiceList);
-//        }catch (Exception e){
-//            e.printStackTrace();
-//            if(et.isActive()) {et.rollback();}
-//        } finally {
-//            em.close();
-//        }
-//        return Optional.empty();
-//    }
 
     @Override
     public Optional<ProductEntity> get(int id) {

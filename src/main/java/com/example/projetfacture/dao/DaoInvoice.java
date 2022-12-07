@@ -3,12 +3,15 @@
 package com.example.projetfacture.dao;
 
 import com.example.projetfacture.models.InvoiceEntity;
+import com.example.projetfacture.models.InvoiceProductEntity;
+import com.example.projetfacture.models.InvoiceProductEntityPK;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.TypedQuery;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,7 +44,6 @@ public class DaoInvoice implements Dao<InvoiceEntity> {
         }
         return Optional.empty();
     }
-
 
     @Override
     public Optional<InvoiceEntity> get(int id) {
@@ -87,11 +89,24 @@ public class DaoInvoice implements Dao<InvoiceEntity> {
 
     @Override
     public void save(InvoiceEntity invoiceEntity) {
+
+    }
+
+
+    public void saveWithproduct(InvoiceEntity invoiceEntity, InvoiceProductEntity invoiceProductEntity) {
         EntityManager em = emf.createEntityManager();
         EntityTransaction et = em.getTransaction();
         try {
             et.begin();
             em.persist(invoiceEntity);
+
+            invoiceProductEntity.setId(new InvoiceProductEntityPK(invoiceEntity.getIdInvoice(), invoiceProductEntity.getProductByIdProduct().getIdProduct()));
+            invoiceProductEntity.setInvoiceByIdInvoice(invoiceEntity);
+
+
+            em.merge(invoiceProductEntity);
+
+
             et.commit();
         } catch (Exception e) {
             e.printStackTrace();

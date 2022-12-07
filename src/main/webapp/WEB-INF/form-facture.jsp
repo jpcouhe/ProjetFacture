@@ -14,13 +14,13 @@
 
     <div class="py-5 text-center">
 
-        <h2>Nouvelle facture pour le client : </h2>
+        <h2>Nouvelle facture pour le client : ${clientId}</h2>
         <p class="lead">Merci de renseigner les données nécessaires pour établir une nouvelle facture</p>
     </div>
     <div class="row g-5 d-flex justify-content-center">
         <div class="col-md-7 col-lg-8">
             <h4 class="mb-3"></h4>
-            <form method="post" action="${pageContext.request.contextPath}/facture/add">
+            <form method="post" action="${pageContext.request.contextPath}/facture/add?id=${clientId}">
                 <div class="row g-3">
                     <div class="col-12">
                         <label for="date">date:</label>
@@ -49,12 +49,12 @@
 
                     <div class="col-12">
                         <label for="priceHT" class="form-label"> Montant HT</label>
-                        <input step=".01" type="number" class="form-control" id="priceHT" onchange="calculateTTC()" readonly name="priceHT">
+                        <input type="number" class="form-control" id="priceHT" onchange="calculateTTC()" readonly name="priceHT">
                     </div>
 
                     <div class="col-12">
                         <label for="priceTTC" class="form-label">Montant TTC</label>
-                        <input step=".01" type="number" class="form-control" id="priceTTC" readonly name="priceTTC">
+                        <input type="number" class="form-control" id="priceTTC" readonly name="priceTTC">
                     </div>
 
                 </div>

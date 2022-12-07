@@ -30,7 +30,8 @@ function calculateAmount(){
 
     if(firstElement > 0) {
     let totalPrice = firstElement * secondElement
-        document.getElementById("priceHT").value = totalPrice.toFixed(2)
+      /*  document.getElementById("priceHT").value = totalPrice.toFixed(2)*/
+        document.getElementById("priceHT").value = Math.trunc(totalPrice)
         calculateTTC(totalPrice)
 
     }
@@ -41,5 +42,6 @@ function calculateTTC(totalPrice){
     let tva = document.getElementById("service").selectedOptions[0].dataset.tva;
 
     let totalPriceTTC = (tva * totalPrice)/100 + totalPrice
-    document.getElementById("priceTTC").value = totalPriceTTC.toFixed(2)
+/*    document.getElementById("priceTTC").value = totalPriceTTC.toFixed(2)*/
+    document.getElementById("priceTTC").value = Math.trunc(totalPriceTTC)
 }

@@ -1,6 +1,9 @@
 package com.example.projetfacture.servlet;
 
+import com.example.projetfacture.dao.ClientDao;
+import com.example.projetfacture.dao.DaoInvoice;
 import com.example.projetfacture.dao.ProductDao;
+import com.example.projetfacture.models.ClientEntity;
 import com.example.projetfacture.models.InvoiceEntity;
 import com.example.projetfacture.models.InvoiceProductEntity;
 import com.example.projetfacture.models.ProductEntity;
@@ -12,7 +15,10 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 @WebServlet(urlPatterns = AddFactureServlet.URL)
 public class AddFactureServlet extends HttpServlet {
@@ -20,17 +26,19 @@ public class AddFactureServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String idclient = req.getParameter("id");
         ProductDao product = new ProductDao();
         List<ProductEntity> productList = product.getAll();
 
 
         req.setAttribute("products", productList);
-
+        req.setAttribute("clientId", idclient);
         req.getRequestDispatcher("/WEB-INF/form-facture.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String clientId = req.getParameter("id");
         String dateInvoice = req.getParameter("date");
         String serviceInvoice = req.getParameter("service");
         String serviceQuantityInvoice = req.getParameter("serviceQuantity");
@@ -39,15 +47,32 @@ public class AddFactureServlet extends HttpServlet {
 
 
 
-        InvoiceEntity invoice = new InvoiceEntity();
-        invoice.setDateInvoice(Date.valueOf(dateInvoice));
-        invoice.setMontantHtInvoice(Integer.valueOf(priceHTInvoice));
-        invoice.setMontantTtcInvoice(Integer.valueOf(priceTTCInvoice));
-        invoice.setInvoiceProductsByIdInvoice();
+            InvoiceEntity invoice = new InvoiceEntity();
+            invoice.setDateInvoice(Date.valueOf(dateInvoice));
+            invoice.setMontantHtInvoice(Integer.valueOf(priceHTInvoice));
+            invoice.setMontantTtcInvoice(Integer.valueOf(priceTTCInvoice));
+            invoice.setIdClient(1);
 
-        InvoiceProductEntity invoiceProduct = new InvoiceProductEntity();
-      /*  invoiceProduct.setIdInvoice();
-        invoiceProduct.setIdProduct();*/
+
+            ProductDao product = new ProductDao();
+            Optional<ProductEntity> productTosave = product.get(Integer.parseInt(serviceInvoice));
+
+            if(productTosave.isPresent()){
+
+            InvoiceProductEntity invoiceProductEntity = new InvoiceProductEntity();
+            invoiceProductEntity.setProductByIdProduct(productTosave.get());
+            invoiceProductEntity.setQuantity(Integer.valueOf(serviceQuantityInvoice));
+
+            DaoInvoice daoInvoice = new DaoInvoice();
+            daoInvoice.saveWithproduct(invoice, invoiceProductEntity);
+
+            resp.sendRedirect(req.getContextPath() + "/client");
+            }
+
+
+
+
+
 
     }
 }
