@@ -20,18 +20,18 @@
     <div class="row g-5 d-flex justify-content-center">
         <div class="col-md-7 col-lg-8">
             <h4 class="mb-3"></h4>
-            <form class="needs-validation" novalidate>
+            <form method="post" action="${pageContext.request.contextPath}/facture/add">
                 <div class="row g-3">
                     <div class="col-12">
                         <label for="date">date:</label>
-                        <input type="date" id="date" name="start">
+                        <input type="date" id="date" name="date">
                     </div>
 
 
 
                     <div class="col-6">
                         <label for="service" class="form-label">Service</label>
-                        <select class="form-select" id="service" onchange="calculateAmount()">
+                        <select class="form-select" id="service" onchange="calculateAmount()" name="service">
                                 <option value="" data-price="">Choisir...</option>
                             <c:forEach items="${products}" var="product">
                                 <option value="${product.idProduct}" data-price="${product.priceHtProduct}" data-tva="${product.tvaByIdTva.tauxTva}">${product.descriptionProduct}</option>
@@ -40,7 +40,7 @@
                     </div>
                     <div class="col-6">
                         <label for="serviceQuantity" class="form-label">Quantité</label>
-                        <input type="number" class="form-control" id="serviceQuantity" name="serviceQuantity" min="1" max="100" value="" onchange="calculateAmount()">
+                        <input type="number" class="form-control" id="serviceQuantity" name="serviceQuantity" min="1" max="100" value="" onchange="calculateAmount()" name="serviceQuantity">
                     </div>
 
 
@@ -49,12 +49,12 @@
 
                     <div class="col-12">
                         <label for="priceHT" class="form-label"> Montant HT</label>
-                        <input step=".01" type="number" class="form-control" id="priceHT" onchange="calculateTTC()" readonly>
+                        <input step=".01" type="number" class="form-control" id="priceHT" onchange="calculateTTC()" readonly name="priceHT">
                     </div>
 
                     <div class="col-12">
                         <label for="priceTTC" class="form-label">Montant TTC</label>
-                        <input step=".01" type="number" class="form-control" id="priceTTC" readonly>
+                        <input step=".01" type="number" class="form-control" id="priceTTC" readonly name="priceTTC">
                     </div>
 
                 </div>

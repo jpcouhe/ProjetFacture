@@ -16,7 +16,10 @@ btn.addEventListener("click", (e) => {
 
 })*/
 
+const input = document.querySelector("#idServiceQuantity")
+input.addEventListener("change", (e) => {
 
+})
 
 function calculateAmount(){
     let firstElement = document.getElementById("serviceQuantity").value;

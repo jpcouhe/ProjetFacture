@@ -110,7 +110,7 @@ public class InvoiceEntity {
         return invoiceProductsByIdInvoice;
     }
 
-    public void setInvoiceProductsByIdInvoice(Collection<InvoiceProductEntity> invoiceProductsByIdInvoice) {
+    public void setInvoiceProductsByIdInvoice() {
         this.invoiceProductsByIdInvoice = invoiceProductsByIdInvoice;
     }
 }
