@@ -13,7 +13,5 @@ public interface Dao<T> {
 
     void update(T t);
 
-    void update(int idParam, String name, String description);
-
     void delete(T t);
 }

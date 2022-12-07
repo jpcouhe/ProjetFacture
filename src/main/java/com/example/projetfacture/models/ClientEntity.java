@@ -35,8 +35,23 @@ public class ClientEntity {
     @ManyToOne
     @JoinColumn(name = "id_users", referencedColumnName = "id_users", insertable = false, updatable = false)
     private UsersEntity usersByIdUsers;
-    @OneToMany(mappedBy = "clientByIdClient")
+    @OneToMany(mappedBy = "clientByIdClient", cascade = {CascadeType.REMOVE})
     private Collection<InvoiceEntity> invoicesByIdClient;
+
+    public ClientEntity() {
+    }
+
+    public ClientEntity( String adressClient, String nameClient, String telClient, String emailClient, Integer postalCodeClient, String cityClient, int idUsers) {
+        this.adressClient = adressClient;
+        this.nameClient = nameClient;
+        this.telClient = telClient;
+        this.emailClient = emailClient;
+        this.postalCodeClient = postalCodeClient;
+        this.cityClient = cityClient;
+        this.idUsers = idUsers;
+
+
+    }
 
     public int getIdClient() {
         return idClient;
