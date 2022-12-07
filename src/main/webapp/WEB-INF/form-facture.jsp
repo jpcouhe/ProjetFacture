@@ -27,32 +27,34 @@
                         <input type="date" id="date" name="start">
                     </div>
 
-                    <div id="product-input">
+
 
                     <div class="col-6">
                         <label for="service" class="form-label">Service</label>
-                        <select class="form-select" id="service" >
-                            <option value="">Choisir...</option>
-                            <option value="Menage">Menage</option>
+                        <select class="form-select" id="service" onchange="calculateAmount()">
+                                <option value="" data-price="">Choisir...</option>
+                            <c:forEach items="${products}" var="product">
+                                <option value="${product.idProduct}" data-price="${product.priceHtProduct}" data-tva="${product.tvaByIdTva.tauxTva}">${product.descriptionProduct}</option>
+                            </c:forEach>
                         </select>
                     </div>
                     <div class="col-6">
                         <label for="serviceQuantity" class="form-label">Quantité</label>
-                        <input type="number" class="form-control" id="serviceQuantity" name="serviceQuantity" min="1" max="100" value="">
+                        <input type="number" class="form-control" id="serviceQuantity" name="serviceQuantity" min="1" max="100" value="" onchange="calculateAmount()">
                     </div>
 
-                    </div>
 
-                    <button class="btn-add-product">AJouter un produit</button>
+
+                   <%-- <button class="btn-add-product">AJouter un produit</button>--%>
 
                     <div class="col-12">
-                        <label for="priceHT" class="form-label">Montant HT</label>
-                        <input step=".01" type="number" class="form-control" id="priceHT">
+                        <label for="priceHT" class="form-label"> Montant HT</label>
+                        <input step=".01" type="number" class="form-control" id="priceHT" onchange="calculateTTC()" readonly>
                     </div>
 
                     <div class="col-12">
                         <label for="priceTTC" class="form-label">Montant TTC</label>
-                        <input step=".01" type="number" class="form-control" id="priceTTC">
+                        <input step=".01" type="number" class="form-control" id="priceTTC" readonly>
                     </div>
 
                 </div>

@@ -71,6 +71,7 @@ public class ProductDao implements Dao<ProductEntity> {
 
             TypedQuery<ProductEntity> query = entityManager.createQuery("SELECT g from ProductEntity g", ProductEntity.class);
             productList = query.getResultList();
+            productList.forEach(product -> product.getTvaByIdTva());
             et.commit();
         }catch (Exception e){
             e.printStackTrace();
