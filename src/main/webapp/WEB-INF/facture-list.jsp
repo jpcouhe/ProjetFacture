@@ -16,7 +16,7 @@
 <div class="container">
 
   <button class="btn-add d-flex">
-    <a href="../facture/add">Ajouter une facture</a>
+    <a href="../facture/add?id=${clientId}">Ajouter une facture</a>
   </button>
   <div class="row flex-lg-nowrap">
     <div class="col">

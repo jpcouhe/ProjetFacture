@@ -1,37 +1,27 @@
 package com.example.projetfacture.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.io.Serializable;
-
+@Embeddable
 public class InvoiceProductEntityPK implements Serializable {
     @Column(name = "id_invoice")
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private int idInvoice;
     @Column(name = "id_product")
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+
+
     private int idProduct;
 
-    public int getIdInvoice() {
-        return idInvoice;
+    public InvoiceProductEntityPK() {
     }
 
-    public void setIdInvoice(int idInvoice) {
+    public InvoiceProductEntityPK(int idInvoice, int idProduct) {
         this.idInvoice = idInvoice;
-    }
-
-    public int getIdProduct() {
-        return idProduct;
-    }
-
-    public void setIdProduct(int idProduct) {
         this.idProduct = idProduct;
     }
+
 
     @Override
     public boolean equals(Object o) {
@@ -51,5 +41,21 @@ public class InvoiceProductEntityPK implements Serializable {
         int result = idInvoice;
         result = 31 * result + idProduct;
         return result;
+    }
+
+    public int getIdInvoice() {
+        return idInvoice;
+    }
+
+    public void setIdInvoice(int idInvoice) {
+        this.idInvoice = idInvoice;
+    }
+
+    public int getIdProduct() {
+        return idProduct;
+    }
+
+    public void setIdProduct(int idProduct) {
+        this.idProduct = idProduct;
     }
 }

@@ -26,6 +26,7 @@ public class FactureServlet extends HttpServlet {
         Optional<List<InvoiceEntity>> invoiceEntity = dao.getInvoiceByIdClient(Integer.parseInt(id));
 
         if(invoiceEntity.isPresent()){
+            req.setAttribute("clientId", id);
             req.setAttribute("invoices", invoiceEntity.get());
         }
         else{
