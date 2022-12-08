@@ -18,7 +18,7 @@
             <ul class="navbar-nav me-auto mb-2">
                 <li class="nav-item">
                     <a class="nav-link" href="/product/add">Ajouter un produit</a>
-                    <a class="nav-link" href="#">Se deconnecter</a>
+                    <a class="nav-link" href="/logout">Se deconnecter</a>
                 </li>
             </ul>
         </div>
