@@ -145,6 +145,8 @@ public class DaoInvoice implements Dao<InvoiceEntity> {
         try {
             et.begin();
             InvoiceEntity invoiceToDelete = em.find(InvoiceEntity.class, invoiceEntity.getIdInvoice());
+          /*  InvoiceProductEntity invoiceProductEntity = (InvoiceProductEntity) em.createQuery("SELECT b FROM InvoiceProductEntity b WHERE b.productByIdProduct.id = :idParam", InvoiceProductEntity.class).setParameter("idParam", invoiceToDelete.getIdInvoice()).getResultList();
+            em.remove(invoiceProductEntity);*/
             em.remove(invoiceToDelete);
             et.commit();
         } catch (Exception e) {

@@ -30,10 +30,27 @@ public class AddFactureServlet extends HttpServlet {
         ProductDao product = new ProductDao();
         List<ProductEntity> productList = product.getAll();
 
+try{
+
+    ClientDao clientDao = new ClientDao();
+    Optional<ClientEntity> client = clientDao.get(Integer.parseInt(idclient));
+
+
+    if(client.isPresent()){
 
         req.setAttribute("products", productList);
         req.setAttribute("clientId", idclient);
+        req.setAttribute("client", client.get());
         req.getRequestDispatcher("/WEB-INF/form-facture.jsp").forward(req, resp);
+    }else{
+        req.getRequestDispatcher("/WEB-INF/error.jsp").forward(req, resp);
+    }
+}catch (NumberFormatException e){
+    System.err.println(e.getMessage());
+}
+
+
+
     }
 
     @Override
@@ -51,7 +68,7 @@ public class AddFactureServlet extends HttpServlet {
             invoice.setDateInvoice(Date.valueOf(dateInvoice));
             invoice.setMontantHtInvoice(Integer.valueOf(priceHTInvoice));
             invoice.setMontantTtcInvoice(Integer.valueOf(priceTTCInvoice));
-            invoice.setIdClient(1);
+            invoice.setIdClient(Integer.parseInt(clientId));
 
 
             ProductDao product = new ProductDao();
